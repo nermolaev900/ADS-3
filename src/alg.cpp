@@ -1,30 +1,31 @@
 #include <iostream>
 
 int cbinsearch(int *arr, int size, int value) {
-     int count = 0;
-     int s = size-1;
-     int v = value;
-     int s = size;
-     if (*arr == value) {
-         int i = 0;
-         while (arr[i] == value) {
-            count++;
-            i++;
+    int N = 0;
+    int K = size - 1;
+    int kol = 0;
+    for (int i = 0; i < K; i++) {
+        int C = N + (K - N) / 2;
+        if (arr[C] == value) {
+            if (arr[C - 1] == value || arr[C + 1] == value) {
+                for (int j = C; arr[j] == value; j--) {
+                    kol += 1;
+                }
+                for (int p = C + 1; arr[p] == value; p++) {
+                     kol += 1;
+                 }
+                 return kol;
+             } 
+             else {
+                 return 1;
+             }
+         } 
+         else if (arr[C] < value) {
+             N = C + 1;
+        } 
+        else {
+            K = C;
         }
-        return count;
     }
-    if (arr[size-1] == value) {
-        int i = size-1;
-        while (arr[i] == value) {
-            count++;
-            i--;
-        }
-        return count;
-     }
-     int min = size;
-     int max = 0;
-     for (int i = 0; arr[min] != value && arr[max] != value && i != size / 2;i++) {
-     for (int i = 0; arr[min] != v && arr[max] != v && i != s / 2; i++) {
-         if (arr[(min+max)/2] > value) {
-             int i = max;
-             max = (min + max) / 2;
+    return 0;
+}
