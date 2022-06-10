@@ -1,26 +1,24 @@
 #include <iostream>
 
- int cbinsearch(int *arr, int size, int value) {
-   //  поместить сюда реализацию алгоритма
-   int kol = 0;
-   for (int i = 0; i < size; i++) {
-       if (arr[i] == value) {
-           kol++;
-       } else { continue; }
+int cbinsearch(int *arr, int size, int value) {
+   int right = size - 1;
+   int left = 0, mid = 0;
+   while (left <= right) {
+   mid = (left + right) / 2;
+   if (value == *(arr + mid)) {
+   left = right = mid;
+   while (*(arr + right) == *(arr + right + 1)) {
+   right++;
    }
-   return kol;
-   return 0; // если ничего не найдено
- }
-
- int main() {
-     int size = 0;
-     std::cin >> size; //размер
-     int *arr = new int[size];
-     int value = 0; 
-     std::cin >> value; //ценность
-     for (int i = 0; i < size; i++) {
-         std::cin >> arr[i];
-     }
-   std::cout << cbinsearch(arr, size, value) << std::endl;
+   while (*(arr + left) == *(arr + left - 1)) {
+   left--;
+   }
+   return right - left + 1;
+   } else if (value > *(arr + mid)) {
+   left = mid + 1;
+   } else if (value < *(arr + mid)) {
+   right = mid - 1;
+   }
+   }
    return 0;
  }
