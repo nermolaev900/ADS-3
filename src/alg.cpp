@@ -1,4 +1,4 @@
-#include <iostream>
+// Copyright 2021 NNTU-CS
 
 int cbinsearch(int *arr, int size, int value) {
     int N = 0;
@@ -15,15 +15,12 @@ int cbinsearch(int *arr, int size, int value) {
                      kol += 1;
                  }
                  return kol;
-             } 
-             else {
+             } else {
                  return 1;
              }
-         } 
-         else if (arr[C] < value) {
+         } else if (arr[C] < value) {
              N = C + 1;
-        } 
-        else {
+        } else {
             K = C;
         }
     }
